@@ -1,8 +1,6 @@
 import argparse
 import json
-from core.model import MedicalImageClassifier
 import os
-import tensorflow as tf
 import faulthandler
 
 def get_parser():
@@ -29,7 +27,7 @@ def get_parser():
 		dest='config_json',
 		help='JSON file for model configuration',
 		type=str,
-		default='config.json', 
+		default='./configs/config.json', 
 		metavar='FILENAME'
 		)
 	parser.add_argument(
@@ -50,6 +48,14 @@ def get_parser():
 	return args
 
 def main(args):
+	try:
+		import tensorflow as tf
+		from core.model import MedicalImageClassifier
+	except ModuleNotFoundError as e:
+		raise ModuleNotFoundError(
+			"Missing dependency: {}. Please install project dependencies (e.g. tensorflow==1.15 and SimpleITK) before running training/prediction.".format(e.name)
+		) from e
+
 	# select gpu
 	# os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 	os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu) # e.g. "0,1,2", "0,2" 
