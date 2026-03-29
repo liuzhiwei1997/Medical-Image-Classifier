@@ -55,7 +55,9 @@ def main(args):
 	except ModuleNotFoundError as e:
 		raise ModuleNotFoundError(
 			"Missing dependency: {}. Please install project dependencies before running training/prediction. "
-			"For Python 3.10 use tensorflow==2.15.* + SimpleITK, for Python 3.7 use tensorflow==1.15.* + SimpleITK.".format(e.name)
+			"For Linux/macOS Python 3.10 use tensorflow==2.15.* + SimpleITK; "
+			"for Windows native GPU use tensorflow==2.10.* + CUDA 11.2 + cuDNN 8.1; "
+			"for Python 3.7 use tensorflow==1.15.* + SimpleITK.".format(e.name)
 		) from e
 
 	# select gpu

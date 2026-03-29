@@ -59,6 +59,35 @@ For users on modern Python (e.g. Python 3.10), this project can run with TensorF
 	python main.py --phase PREDICT --config_json ./configs/config.json --gpu 0
 	```
 
+### Quickstart (Windows + NVIDIA GPU)
+> TensorFlow native Windows GPU is officially supported up to TF 2.10.
+
+1. Install NVIDIA driver, CUDA 11.2, cuDNN 8.1 (system-level prerequisites).
+2. Create and activate venv in PowerShell:
+	```powershell
+	py -3.10 -m venv .venv
+	.\.venv\Scripts\Activate.ps1
+	python -m pip install --upgrade pip
+	pip install -r requirements-win-gpu.txt
+	```
+3. Verify TensorFlow can see GPU:
+	```powershell
+	python -c "import tensorflow as tf; print(tf.__version__); print(tf.config.list_physical_devices('GPU'))"
+	```
+4. Start training:
+	```powershell
+	python main.py --phase TRAIN --config_json .\configs\config.json --gpu 0
+	```
+5. Start prediction:
+	```powershell
+	python main.py --phase PREDICT --config_json .\configs\config.json --gpu 0
+	```
+
+#### One-shot PowerShell (copy & run)
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\windows_gpu_bootstrap.ps1
+```
+
 ### Required Libraries
 Known good dependencies:
 - Anaconda 3.6
