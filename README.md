@@ -83,11 +83,6 @@ For users on modern Python (e.g. Python 3.10), this project can run with TensorF
 	python main.py --phase PREDICT --config_json .\configs\config.json --gpu 0
 	```
 
-#### One-shot PowerShell (copy & run)
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\windows_gpu_bootstrap.ps1
-```
-
 ### Required Libraries
 Known good dependencies:
 - Anaconda 3.6
