@@ -36,6 +36,29 @@ Currently the classifier provides following classification networks:
 - ResNet
 
 ## Usage
+### Quickstart (Environment -> Training)
+For users on modern Python (e.g. Python 3.10), this project can run with TensorFlow 2.x in v1-compat mode.
+
+1. Create environment:
+	```bash
+	python -m venv .venv
+	source .venv/bin/activate
+	python -m pip install --upgrade pip
+	pip install -r requirements-py310.txt
+	```
+2. Verify CLI:
+	```bash
+	python main.py --help
+	```
+3. Run training with built-in sample data:
+	```bash
+	python main.py --phase TRAIN --config_json ./configs/config.json --gpu 0
+	```
+4. Run prediction:
+	```bash
+	python main.py --phase PREDICT --config_json ./configs/config.json --gpu 0
+	```
+
 ### Required Libraries
 Known good dependencies:
 - Anaconda 3.6

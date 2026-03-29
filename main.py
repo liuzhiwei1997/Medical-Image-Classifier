@@ -49,11 +49,13 @@ def get_parser():
 
 def main(args):
 	try:
-		import tensorflow as tf
+		import tensorflow.compat.v1 as tf
+		tf.disable_v2_behavior()
 		from core.model import MedicalImageClassifier
 	except ModuleNotFoundError as e:
 		raise ModuleNotFoundError(
-			"Missing dependency: {}. Please install project dependencies (e.g. tensorflow==1.15 and SimpleITK) before running training/prediction.".format(e.name)
+			"Missing dependency: {}. Please install project dependencies before running training/prediction. "
+			"For Python 3.10 use tensorflow==2.15.* + SimpleITK, for Python 3.7 use tensorflow==1.15.* + SimpleITK.".format(e.name)
 		) from e
 
 	# select gpu
