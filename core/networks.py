@@ -1,4 +1,5 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 def init_weight(shape):
 	w = tf.truncated_normal(shape= shape, mean=0, stddev =0.1)

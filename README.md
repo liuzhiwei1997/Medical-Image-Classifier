@@ -36,6 +36,59 @@ Currently the classifier provides following classification networks:
 - ResNet
 
 ## Usage
+### Quickstart (Environment -> Training)
+For users on modern Python (e.g. Python 3.10), this project can run with TensorFlow 2.x in v1-compat mode.
+
+1. Create environment:
+	```bash
+	python -m venv .venv
+	source .venv/bin/activate
+	python -m pip install --upgrade pip
+	pip install -r requirements-py310.txt
+	```
+2. Verify CLI:
+	```bash
+	python main.py --help
+	```
+3. Run training with built-in sample data:
+	```bash
+	python main.py --phase TRAIN --config_json ./configs/config.json --gpu 0
+	```
+4. Run prediction:
+	```bash
+	python main.py --phase PREDICT --config_json ./configs/config.json --gpu 0
+	```
+
+### Quickstart (Windows + NVIDIA GPU)
+> TensorFlow native Windows GPU is officially supported up to TF 2.10.
+
+1. Install NVIDIA driver, CUDA 11.2, cuDNN 8.1 (system-level prerequisites).
+2. Create and activate Conda env (`class`) in Anaconda Prompt / PowerShell:
+	```powershell
+	conda create -n class python=3.10 -y
+	conda activate class
+	conda install -y -c conda-forge cudatoolkit=11.2 cudnn=8.1
+	python -m pip install --upgrade pip
+	pip install -r requirements-win-gpu.txt
+	```
+3. Verify TensorFlow can see GPU:
+	```powershell
+	python -c "import tensorflow as tf; print(tf.__version__); print(tf.config.list_physical_devices('GPU'))"
+	```
+4. Start training:
+	```powershell
+	python main.py --phase TRAIN --config_json .\configs\config.json --gpu 0
+	```
+5. Start prediction:
+	```powershell
+	python main.py --phase PREDICT --config_json .\configs\config.json --gpu 0
+	```
+
+#### One-shot PowerShell (copy & run)
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\windows_gpu_bootstrap.ps1
+```
+
 ### Required Libraries
 Known good dependencies:
 - Anaconda 3.6
