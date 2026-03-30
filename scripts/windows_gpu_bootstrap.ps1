@@ -4,14 +4,14 @@
 
 $ErrorActionPreference = "Stop"
 
-Write-Host "1) Show Python launcher versions"
-py -0p
+Write-Host "1) Create Conda environment: class (Python 3.10)"
+conda create -n class python=3.10 -y
 
-Write-Host "2) Create virtual environment with Python 3.10"
-py -3.10 -m venv .venv
+Write-Host "2) Activate Conda environment: class"
+conda activate class
 
-Write-Host "3) Activate virtual environment"
-& .\.venv\Scripts\Activate.ps1
+Write-Host "3) Install CUDA runtime dependencies from conda-forge"
+conda install -y -c conda-forge cudatoolkit=11.2 cudnn=8.1
 
 Write-Host "4) Upgrade pip tooling"
 python -m pip install --upgrade pip setuptools wheel
